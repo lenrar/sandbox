@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+class_name Player
 
 
 const UP = Vector2(0, -1)
@@ -10,6 +10,8 @@ const JUMPFORCE = 400
 const EXTRAJUMPS = 2
 const ACCEL = 80
 
+const ENEMYKNOCKBACK = 500
+
 const C = "c"
 const A = "a"
 const F = "f"
@@ -19,7 +21,6 @@ var songs = {
 	[C, A, G, F]: 0, #Attack
 	[F, G, A, C]: 1 # Defend
 }
-
 
 var motion = Vector2()
 var extraJumps = EXTRAJUMPS
@@ -44,11 +45,24 @@ func update_sound_counter(sound):
 	fourSoundCounter.push_back(sound)
 	
 	
-func perform_songs():
-	if(fourSoundCounter.size() == 4):
-		var song = songs.get(fourSoundCounter)
-		print(song)
+func attack():
+	print("attack!")
+	var attack_radius = $attack
+	var bodies = attack_radius.get_overlapping_bodies()
+	print(bodies)
+	for body in bodies:
+		body.hit(1)
 	
+func perform_songs():
+	var song = null
+	if(fourSoundCounter.size() == 4):
+		song = songs.get(fourSoundCounter)
+		if(song != null):
+			match song:
+				0: attack()
+				1: null
+	
+		
 func play_sounds():
 	if((sound == null || !sound.playing) && soundQueue.size() > 0):
 		sound = soundQueue.pop_front()
@@ -94,3 +108,15 @@ func _physics_process(delta):
 		
 	
 	
+
+func hit(amount: int) -> void:
+	health -= amount
+	if(health <= 0):
+		restart_level()
+
+func restart_level():
+	health = 4
+	get_tree().change_scene("res://TestLevel.tscn")
+
+func _on_fallzone_body_entered(body):
+	restart_level()
