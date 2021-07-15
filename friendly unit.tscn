@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://friendly unit.gd" type="Script" id=1]
+[ext_resource path="res://textures/blue square.png" type="Texture" id=2]
+[ext_resource path="res://sounds/c.wav" type="AudioStream" id=3]
+[ext_resource path="res://sounds/a.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/f.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/g.wav" type="AudioStream" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 48.0
+
+[node name="friendly unit" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="c" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 3 )
+
+[node name="a" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 4 )
+
+[node name="f" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 5 )
+
+[node name="g" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 6 )
+
+[node name="radii" type="Node" parent="."]
+
+[node name="attack" type="Area2D" parent="radii"]
+
+[node name="attack radius" type="CollisionShape2D" parent="radii/attack"]
+shape = SubResource( 2 )

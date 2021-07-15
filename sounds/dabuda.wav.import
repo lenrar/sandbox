@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dabuda.wav-f08635fe2e09e39e9c3831e02ec51021.sample"
+
+[deps]
+
+source_file="res://sounds/dabuda.wav"
+dest_files=[ "res://.import/dabuda.wav-f08635fe2e09e39e9c3831e02ec51021.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=1

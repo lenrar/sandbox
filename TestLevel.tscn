@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://textures/grass tiles.tres" type="TileSet" id=1]
+[ext_resource path="res://friendly unit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemy unit.tscn" type="PackedScene" id=3]
+
+[node name="test level" type="Node2D"]
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+margin_left = -10000.0
+margin_top = -10000.0
+margin_right = 4.99999e+09
+margin_bottom = 4.99999e+09
+color = Color( 0.168627, 0.129412, 0.129412, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="friendly unit" parent="." instance=ExtResource( 2 )]
+position = Vector2( 440, 432 )
+collision_layer = 3
+
+[node name="Camera2D" type="Camera2D" parent="friendly unit"]
+current = true
+limit_bottom = 700
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+collision_layer = 3
+format = 1
+tile_data = PoolIntArray( 589834, 1, 196609, 589835, 1, 196610, 589836, 1, 196611, 655364, 1, 0, 720900, 1, 65536, 720903, 0, 0, 720913, 0, 0, 720916, 1, 0, 786436, 1, 65536, 786439, 0, 65536, 786449, 0, 65536, 786451, 0, 196609, 786452, 0, 458758, 851972, 1, 458756, 851973, 1, 196611, 851975, 0, 65536, 851984, 0, 1, 851985, 0, 393222, 851988, 1, 65536, 917508, 1, 65536, 917511, 0, 393220, 917512, 0, 3, 917519, 0, 1, 917520, 0, 65541, 917521, 0, 65539, 917524, 1, 65536, 983044, 1, 65536, 983047, 0, 65537, 983048, 0, 65542, 983049, 0, 3, 983054, 0, 1, 983055, 0, 65541, 983056, 0, 65538, 983057, 0, 65539, 983060, 1, 65536, 1048580, 1, 65536, 1048582, 0, 196609, 1048583, 0, 327686, 1048584, 0, 131074, 1048585, 0, 327685, 1048586, 0, 196610, 1048587, 0, 196610, 1048588, 0, 196610, 1048589, 0, 196610, 1048590, 0, 327686, 1048591, 0, 131074, 1048592, 0, 131074, 1048593, 0, 131075, 1048596, 1, 65536, 1114116, 1, 65536, 1114132, 1, 65536, 1179652, 1, 327684, 1179653, 1, 196610, 1179654, 1, 196610, 1179655, 1, 196610, 1179656, 1, 196610, 1179657, 1, 196610, 1179658, 1, 196610, 1179659, 1, 196610, 1179660, 1, 196610, 1179661, 1, 196610, 1179662, 1, 196610, 1179663, 1, 196610, 1179664, 1, 196610, 1179665, 1, 196610, 1179666, 1, 196610, 1179667, 1, 196610, 1179668, 1, 327687 )
+
+[node name="enemy unit2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 560, 336 )
+
+[node name="enemy unit" parent="." instance=ExtResource( 3 )]
+position = Vector2( 344, 464 )
